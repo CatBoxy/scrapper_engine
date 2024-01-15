@@ -37,7 +37,7 @@ class Database {
     try {
       await this.connection.execute(`
         CREATE TABLE IF NOT EXISTS \`scrapper-engine\`.content (
-          id int(11) auto_increment NOT NULL,
+          id VARCHAR(36) NOT NULL,
           scrapper_id VARCHAR(100) NOT NULL,
           payload VARCHAR(2000) NOT NULL,
           aggregate VARCHAR(50) NOT NULL,
