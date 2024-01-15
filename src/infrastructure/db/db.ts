@@ -77,6 +77,45 @@ class Database {
       console.error("Error inserting:", error.message);
     }
   }
+
+  public async initTransaction() {
+    try {
+      if (this.connection) {
+        await this.connection.beginTransaction();
+        console.log("Transaction started.");
+      } else {
+        console.error("Database connection not initialized.");
+      }
+    } catch (error: any) {
+      console.error("Error initiating transaction:", error.message);
+    }
+  }
+
+  public async commit() {
+    try {
+      if (this.connection) {
+        await this.connection.commit();
+        console.log("Transaction committed.");
+      } else {
+        console.error("Database connection not initialized.");
+      }
+    } catch (error: any) {
+      console.error("Error committing transaction:", error.message);
+    }
+  }
+
+  public async rollback() {
+    try {
+      if (this.connection) {
+        await this.connection.rollback();
+        console.log("Transaction rolled back.");
+      } else {
+        console.error("Database connection not initialized.");
+      }
+    } catch (error: any) {
+      console.error("Error rolling back transaction:", error.message);
+    }
+  }
 }
 
 export default Database;
