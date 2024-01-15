@@ -1,7 +1,7 @@
 import { PythonShell, Options } from "python-shell";
 
 interface ScriptManager {
-  runScript(scriptFileName: string, args?: string[]): Promise<void>;
+  runScript(scriptFileName: string, args?: string[]): Promise<string>;
 }
 
 class ScriptManagerImpl implements ScriptManager {
@@ -11,14 +11,14 @@ class ScriptManagerImpl implements ScriptManager {
     scriptPath: "./src/scrapper",
   };
 
-  public async runScript(scriptFileName: string, args?: string[]): Promise<void> {
+  public async runScript(scriptFileName: string, args?: string[]): Promise<string> {
     const optionsWithArgs: Options = { ...this.options, args };
 
-    return new Promise<void>((resolve, reject) => {
+    return new Promise<string>((resolve, reject) => {
       PythonShell.run(scriptFileName, optionsWithArgs)
         .then((results: any) => {
           console.log("results: %j", results);
-          resolve();
+          resolve(results);
         })
         .catch((err: any) => {
           reject(err);
