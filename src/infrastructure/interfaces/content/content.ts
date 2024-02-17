@@ -9,7 +9,7 @@ class Content {
     this.id = id;
     this.scrapper_id = scrapper_id;
     this.payload = payload;
-    this. aggregate = aggregate;
+    this.aggregate = aggregate;
     this.created = created;
   }
 
